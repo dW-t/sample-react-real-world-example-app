@@ -9,23 +9,20 @@ import { APP_LOAD } from '../constants/actionType';
 const App = () => {
     const dispatch = useDispatch();
 
-    const OnLoad = (payload, token) => dispatch({ type: APP_LOAD, payload, token, skipTracking: true });
-
     useEffect(() => {
+        const OnLoad = (payload, token) => dispatch({ type: APP_LOAD, payload, token, skipTracking: true });
         const token = window.localStorage.getItem('jwt');
         if (token) {
             agent.setToken(token);
         }
 
         return OnLoad(token ? agent.Auth.current() : null, token);
-    })
+    }, [dispatch])
 
-    const { appLoaded, appName, currentUser, redirectTo } = useSelector(state => {
+    const { appName, currentUser } = useSelector(state => {
         return {
-            appLoaded: state.common.appLoaded,
             appName: state.common.appName,
             currentUser: state.common.currentUser,
-            redirectTo: state.common.redirectTo
         }
     })
 
