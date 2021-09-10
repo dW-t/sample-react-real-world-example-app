@@ -1,10 +1,11 @@
-import createBrowserHistory  from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'react-router-redux'
 import { applyMiddleware, createStore, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import createReducers  from './reducer';
+import { promiseMiddleware, localStorageMiddleware } from './middleware';
 
-export const history = createBrowserHistory ();
+export const history = createBrowserHistory();
 
 const configureStore = (preloadedState) => {
     return createStore(
@@ -13,7 +14,9 @@ const configureStore = (preloadedState) => {
         compose(
             composeWithDevTools(
                 applyMiddleware(
-                routerMiddleware(history)
+                routerMiddleware(history),
+                promiseMiddleware,
+                localStorageMiddleware
                 )
             )
         )
