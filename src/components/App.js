@@ -20,13 +20,21 @@ const App = () => {
         return OnLoad(token ? agent.Auth.current() : null, token);
     })
 
-    const commonState = useSelector(state => state.common)
+    const { appLoaded, appName, currentUser, redirectTo } = useSelector(state => {
+        return {
+            appLoaded: state.common.appLoaded,
+            appName: state.common.appName,
+            currentUser: state.common.currentUser,
+            redirectTo: state.common.redirectTo
+        }
+    })
+
     return (
         <div>
 
             <Header
-                appName={commonState.appName}
-                currentUser={commonState.currentUser}>
+                appName={appName}
+                currentUser={currentUser}>
                 <h1>TopPage</h1>
             </Header>
 
