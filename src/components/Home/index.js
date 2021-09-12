@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { HOME_PAGE_LOADED, APPLY_TAG_FILTER } from '../../constants/actionType';
 import agent from "../../agent";
 import Tags from "./Tags";
+import MainView from "./MainView";
 
 const Promise = global.Promise;
 
@@ -33,6 +34,7 @@ const Home = () => {
 
             <div className="container page">
                 <div className="row">
+                    <MainView />
 
                     <div className="col-md-3">
                         <div className="sidebar">
