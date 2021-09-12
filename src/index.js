@@ -9,12 +9,12 @@ import configureStore, { history } from './store';
 const store = configureStore();
 
 ReactDOM.render(
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Switch>
-           <Route path="/" component={App} />
-        </Switch>
-      </ConnectedRouter>
-    </Provider>,
-    document.getElementById('root'));
-
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Route path="/" component={App} />
+      </Switch>
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('root')
+);
