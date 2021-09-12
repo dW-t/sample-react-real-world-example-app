@@ -21,10 +21,10 @@ const Home = () => {
     };
   });
 
+  const tab = token ? 'feed' : 'all';
   useEffect(() => {
     const OnLoad = (tab, pager, payload) =>
       dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload });
-    const tab = token ? 'feed' : 'all';
     const articlesPromise = token ? agent.Articles.feed : agent.Articles.all;
 
     OnLoad(
@@ -32,7 +32,7 @@ const Home = () => {
       articlesPromise,
       Promise.all([agent.Tags.getAll(), articlesPromise()])
     );
-  }, [dispatch, token]);
+  }, [dispatch, token, tab]);
 
   return (
     <div className="home-page">
@@ -40,7 +40,7 @@ const Home = () => {
 
       <div className="container page">
         <div className="row">
-          <MainView />
+          <MainView tab={tab} />
 
           <div className="col-md-3">
             <div className="sidebar">

@@ -1,4 +1,5 @@
 import agent from '../../agent';
+import ArticleList from '../ArticleList';
 import { useDispatch, useSelector } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionType';
 
@@ -58,12 +59,12 @@ const TagFilterTab = ({ tag }) => {
   );
 };
 
-const MainView = () => {
+const MainView = ({ tab, tag }) => {
   const dispatch = useDispatch();
   const OnTabClick = (tab, pager, payload) =>
     dispatch({ type: CHANGE_TAB, tab, pager, payload });
 
-  const { tab, tag, token } = useSelector((state) => {
+  const { articles, token } = useSelector((state) => {
     return {
       ...state.articleList,
       token: state.common.token,
@@ -81,6 +82,7 @@ const MainView = () => {
           <TagFilterTab tag={tag} />
         </ul>
       </div>
+      <ArticleList articles={articles} />
     </div>
   );
 };
