@@ -1,6 +1,7 @@
 import ArticlePreview from './ArticlePreview';
+import ListPagination from './ListPagination';
 
-const ArticleList = ({ articles }) => {
+const ArticleList = ({ articles, pager, articlesCount, currentPage }) => {
   if (!articles) {
     return <div className="article-preview">Loading...</div>;
   }
@@ -14,6 +15,12 @@ const ArticleList = ({ articles }) => {
       {articles.map((article) => {
         return <ArticlePreview article={article} key={article.slug} />;
       })}
+
+      <ListPagination
+        pager={pager}
+        articlesCount={articlesCount}
+        currentPage={currentPage}
+      />
     </div>
   );
 };
