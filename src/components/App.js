@@ -13,6 +13,7 @@ const App = () => {
   useEffect(() => {
     const OnLoad = (payload, token) =>
       dispatch({ type: APP_LOAD, payload, token, skipTracking: true });
+
     const token = window.localStorage.getItem('jwt');
     if (token) {
       agent.setToken(token);
