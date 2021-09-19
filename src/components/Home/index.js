@@ -36,13 +36,13 @@ const Home = () => {
       articlesPromise,
       Promise.all([agent.Tags.getAll(), articlesPromise()])
     );
-  }, [dispatch, token, tab]);
+  }, []);
 
   useEffect(() => {
     const onUnload = () => dispatch({ type: HOME_PAGE_UNLOADED });
 
     return () => onUnload();
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="home-page">

@@ -8,9 +8,13 @@ import {
   LOGIN,
   LOGIN_PAGE_UNLOADED,
 } from '../constants/actionType';
+import { useState } from 'react';
 
 const Login = () => {
   const dispatch = useDispatch();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const { auth } = useSelector((state) => {
     return {
@@ -26,8 +30,16 @@ const Login = () => {
     dispatch({ type: LOGIN, payload: agent.Auth.login(email, password) });
   const onUnload = () => dispatch({ type: LOGIN_PAGE_UNLOADED });
 
-  const changeEmail = (ev) => onChangeEmail(ev.target.value);
-  const changePassword = (ev) => onChangePassword(ev.target.value);
+  const changeEmail = (ev) => {
+    setEmail(ev.target.value);
+    onChangeEmail(ev.target.value);
+  };
+
+  const changePassword = (ev) => {
+    setPassword(ev.target.value);
+    onChangePassword(ev.target.value);
+  };
+
   const submitForm = (email, password) => (ev) => {
     ev.preventDefault();
     onSubmit(email, password);
@@ -36,9 +48,6 @@ const Login = () => {
   useEffect(() => {
     return () => onUnload();
   }, []);
-
-  const email = '';
-  const password = '';
 
   return (
     <div className="auth-page">
