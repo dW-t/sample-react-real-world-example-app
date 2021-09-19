@@ -6,6 +6,7 @@ import Home from './Home';
 import agent from '../agent';
 import { APP_LOAD } from '../constants/actionType';
 import Login from '../components/Login';
+import Register from './Register';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
       </Switch>
     </div>
   );
