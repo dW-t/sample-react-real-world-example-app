@@ -1,5 +1,4 @@
-const ListErrors = () => {
-  const errors = this.props.errors;
+const ListErrors = ({ errors }) => {
   if (errors) {
     return (
       <ul className="error-messages">

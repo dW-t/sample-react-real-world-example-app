@@ -4,19 +4,20 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import createReducers from './reducer';
 import { promiseMiddleware, localStorageMiddleware } from './middleware';
+import { createLogger } from 'redux-logger';
 
 export const history = createBrowserHistory();
 
-const configureStore = (preloadedState) => {
+const configureStore = () => {
   return createStore(
     createReducers(history),
-    preloadedState,
     compose(
       composeWithDevTools(
         applyMiddleware(
           routerMiddleware(history),
           promiseMiddleware,
-          localStorageMiddleware
+          localStorageMiddleware,
+          createLogger()
         )
       )
     )

@@ -1,35 +1,32 @@
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import agent from '../agent';
-import {
-  ARTICLE_FAVORITED,
-  ARTICLE_UNFAVORITED,
-} from '../constants/actionType';
+import { ARTICLE_FAVORITE, ARTICLE_UNFAVORITE } from '../constants/actionType';
 
-const FAVORITED_CLASS = 'btn btn-sm btn-primary';
-const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
+const FAVORITE_CLASS = 'btn btn-sm btn-primary';
+const NOT_FAVORITE_CLASS = 'btn btn-sm btn-outline-primary';
 
 const ArticlePreview = ({ article }) => {
   const dispatch = useDispatch();
   const favorite = (slug) =>
     dispatch({
-      type: ARTICLE_FAVORITED,
+      type: ARTICLE_FAVORITE,
       payload: agent.Articles.favorite(slug),
     });
 
   const unfavorite = (slug) =>
     dispatch({
-      type: ARTICLE_UNFAVORITED,
+      type: ARTICLE_UNFAVORITE,
       payload: agent.Articles.unfavorite(slug),
     });
 
-  const favoriteButtonClass = article.favorited
-    ? FAVORITED_CLASS
-    : NOT_FAVORITED_CLASS;
+  const favoriteButtonClass = article.favorite
+    ? FAVORITE_CLASS
+    : NOT_FAVORITE_CLASS;
 
   const handleClick = (ev) => {
     ev.preventDefault();
-    if (article.favorited) {
+    if (article.favorite) {
       unfavorite(article.slug);
     } else {
       favorite(article.slug);

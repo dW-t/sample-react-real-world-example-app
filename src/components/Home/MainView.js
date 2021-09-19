@@ -13,7 +13,7 @@ const YourFeedTab = ({ token, onTabClick, tab }) => {
     return (
       <li className="nav-item">
         <a
-          href=""
+          href="/"
           className={tab === 'feed' ? 'nav-link active' : 'nav-link'}
           onClick={clickHandler}
         >
@@ -34,7 +34,7 @@ const GlobalFeedTab = ({ tab, onTabClick }) => {
   return (
     <li className="nav-item">
       <a
-        href=""
+        href="/"
         className={tab === 'all' ? 'nav-link active' : 'nav-link'}
         onClick={clickHandler}
       >
@@ -51,7 +51,7 @@ const TagFilterTab = ({ tag }) => {
 
   return (
     <li className="nav-item">
-      <a href="" className="nav-link active">
+      <a href="/" className="nav-link active">
         <i className="ion-pound"></i>
         {tag}
       </a>

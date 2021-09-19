@@ -1,6 +1,6 @@
 import {
-  ARTICLE_FAVORITED,
-  ARTICLE_UNFAVORITED,
+  ARTICLE_FAVORITE,
+  ARTICLE_UNFAVORITE,
   SET_PAGE,
   APPLY_TAG_FILTER,
   HOME_PAGE_LOADED,
@@ -10,19 +10,19 @@ import {
   PROFILE_PAGE_UNLOADED,
   PROFILE_FAVORITES_PAGE_LOADED,
   PROFILE_FAVORITES_PAGE_UNLOADED,
-} from '../constants/actionTypes';
+} from '../constants/actionType';
 
 const articleList = (state = {}, action) => {
   switch (action.type) {
-    case ARTICLE_FAVORITED:
-    case ARTICLE_UNFAVORITED:
+    case ARTICLE_FAVORITE:
+    case ARTICLE_UNFAVORITE:
       return {
         ...state,
         articles: state.articles.map((article) => {
           if (article.slug === action.payload.article.slug) {
             return {
               ...article,
-              favorited: action.payload.article.favorited,
+              favorite: action.payload.article.favorite,
               favoritesCount: action.payload.article.favoritesCount,
             };
           }

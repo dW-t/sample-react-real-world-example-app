@@ -9,8 +9,14 @@ import {
   LOGIN_PAGE_UNLOADED,
 } from '../constants/actionType';
 
-const Login = ({ email, password }) => {
+const Login = () => {
   const dispatch = useDispatch();
+
+  const { auth } = useSelector((state) => {
+    return {
+      ...state.auth,
+    };
+  });
 
   const onChangeEmail = (value) =>
     dispatch({ type: UPDATE_FIELD_AUTH, key: 'email', value });
@@ -27,15 +33,12 @@ const Login = ({ email, password }) => {
     onSubmit(email, password);
   };
 
-  const { auth } = useSelector((state) => {
-    return {
-      ...state.auth,
-    };
-  });
-
   useEffect(() => {
-    return onUnload();
-  });
+    return () => onUnload();
+  }, []);
+
+  const email = '';
+  const password = '';
 
   return (
     <div className="auth-page">
@@ -47,7 +50,7 @@ const Login = ({ email, password }) => {
               <Link to="/register">Need an account?</Link>
             </p>
 
-            <ListErrors errors={auth.errors} />
+            <ListErrors errors={auth?.errors} />
 
             <form onSubmit={submitForm(email, password)}>
               <fieldset>
@@ -74,7 +77,7 @@ const Login = ({ email, password }) => {
                 <button
                   className="btn btn-lg btn-primary pull-xs-right"
                   type="submit"
-                  disabled={auth.inProgress}
+                  disabled={auth?.inProgress}
                 >
                   Sign in
                 </button>

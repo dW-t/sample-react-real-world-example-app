@@ -44,7 +44,7 @@ const ListPagination = ({ articlesCount, pager, currentPage }) => {
               onClick={onClick}
               key={v.toString()}
             >
-              <a className="page-link" href="">
+              <a className="page-link" href="/">
                 {v + 1}
               </a>
             </li>

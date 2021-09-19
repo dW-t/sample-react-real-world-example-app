@@ -16,7 +16,7 @@ const Tags = ({ tags, onClickTag }) => {
 
           return (
             <a
-              href=""
+              href="/"
               className="tag-default tag-pill"
               key={tag}
               onClick={handleClick}

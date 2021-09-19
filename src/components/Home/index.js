@@ -1,7 +1,11 @@
 import Banner from './Banner';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { HOME_PAGE_LOADED, APPLY_TAG_FILTER } from '../../constants/actionType';
+import {
+  HOME_PAGE_LOADED,
+  APPLY_TAG_FILTER,
+  HOME_PAGE_UNLOADED,
+} from '../../constants/actionType';
 import agent from '../../agent';
 import Tags from './Tags';
 import MainView from './MainView';
@@ -33,6 +37,12 @@ const Home = () => {
       Promise.all([agent.Tags.getAll(), articlesPromise()])
     );
   }, [dispatch, token, tab]);
+
+  useEffect(() => {
+    const onUnload = () => dispatch({ type: HOME_PAGE_UNLOADED });
+
+    return () => onUnload();
+  }, [dispatch]);
 
   return (
     <div className="home-page">

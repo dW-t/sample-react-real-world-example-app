@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const LogOutView = ({ currentUser }) => {
-  if (currentUser) {
+  if (!currentUser) {
     return (
       <ul className="nav navbar-nav pull-xs-right">
         <li className="nav-item">
